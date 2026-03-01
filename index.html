@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Debajit Kumar Sandilya — AI Systems Researcher & Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c14;
+    --bg2: #0d1420;
+    --bg3: #111a28;
+    --gold: #c9a84c;
+    --gold2: #e8c96a;
+    --teal: #2dd4bf;
+    --text: #e8e4d9;
+    --muted: #8a8a7a;
+    --border: rgba(201,168,76,0.18);
+    --card: rgba(13,20,32,0.8);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8,12,20,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold2); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    animation: pulse 8s ease-in-out infinite;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,212,191,0.05) 0%, transparent 70%);
+    bottom: -100px; left: 10%;
+    animation: pulse 10s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+
+  .hero-content { position: relative; max-width: 900px; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease both;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s 0.1s ease both;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold2);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 620px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+    animation: fadeInUp 0.8s 0.2s ease both;
+  }
+
+  .hero-sub strong { color: var(--text); font-weight: 500; }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s 0.3s ease both;
+  }
+
+  .stat-item { display: flex; flex-direction: column; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold2);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s 0.4s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: #080c14;
+    padding: 0.85rem 2rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.85rem 2rem;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.3s, color 0.3s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold2); transform: translateY(-2px); }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 80px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.15;
+  }
+
+  .section-intro {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 700px;
+    margin-bottom: 4rem;
+    line-height: 1.8;
+  }
+
+  /* ── IMPACT SECTION ── */
+  .impact-section { background: var(--bg2); }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .impact-card {
+    background: var(--bg2);
+    padding: 2.5rem;
+    transition: background 0.3s;
+  }
+
+  .impact-card:hover { background: var(--bg3); }
+
+  .impact-icon {
+    width: 44px; height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .impact-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--text);
+  }
+
+  .impact-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* ── RESEARCH PROJECTS ── */
+  .research-section { background: var(--bg); }
+
+  .project-list { display: flex; flex-direction: column; gap: 1.5px; }
+
+  .project-card {
+    background: var(--bg2);
+    border-left: 3px solid transparent;
+    padding: 2.5rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: default;
+  }
+
+  .project-card:hover {
+    border-left-color: var(--gold);
+    background: var(--bg3);
+  }
+
+  .project-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .project-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+
+  .project-card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 680px;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 2px;
+  }
+
+  .project-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.4rem 0.8rem;
+    border-radius: 2px;
+    align-self: flex-start;
+    white-space: nowrap;
+  }
+
+  /* ── PUBLICATIONS ── */
+  .publications-section { background: var(--bg2); }
+
+  .pub-list { display: flex; flex-direction: column; gap: 1px; }
+
+  .pub-card {
+    background: var(--bg3);
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    transition: background 0.3s;
+  }
+
+  .pub-card:hover { background: rgba(201,168,76,0.04); }
+
+  .pub-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gold);
+    padding-top: 0.2rem;
+  }
+
+  .pub-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    color: var(--text);
+  }
+
+  .pub-journal {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .pub-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .pub-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  .pub-badge.wos { background: rgba(45,212,191,0.1); color: var(--teal); }
+  .pub-badge.ieee { background: rgba(201,168,76,0.1); color: var(--gold); }
+  .pub-badge.review { background: rgba(139,92,246,0.1); color: #a78bfa; }
+
+  .pub-citations {
+    text-align: right;
+  }
+
+  .citations-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold2);
+    line-height: 1;
+  }
+
+  .citations-label {
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+  }
+
+  /* ── METRICS BAR ── */
+  .metrics-bar {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 2.5rem 3rem;
+    display: flex;
+    gap: 4rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .metric-item { display: flex; flex-direction: column; }
+
+  .metric-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold2);
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience-section { background: var(--bg); }
+
+  .exp-timeline { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 196px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    padding-top: 0.3rem;
+  }
+
+  .exp-company {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  .exp-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-content p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .certs-section { background: var(--bg2); }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cert-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 2px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .cert-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+
+  .cert-issuer {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .cert-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  /* ── NATIONAL SIGNIFICANCE ── */
+  .national-section { background: var(--bg); }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .pillar {
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .pillar:hover { border-color: var(--gold); }
+
+  .pillar-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(201,168,76,0.08);
+    position: absolute;
+    top: 0.5rem; right: 1rem;
+    line-height: 1;
+  }
+
+  .pillar h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--gold2);
+  }
+
+  .pillar p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* ── PROFILES ── */
+  .profiles-section { background: var(--bg2); }
+
+  .profiles-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .profile-link {
+    flex: 1;
+    min-width: 220px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 1.8rem 2rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    transition: border-color 0.3s, transform 0.3s;
+    border-radius: 2px;
+  }
+
+  .profile-link:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .profile-icon {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .profile-info { display: flex; flex-direction: column; }
+
+  .profile-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  .profile-stat {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: var(--bg);
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    .pub-card { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; }
+    .exp-item::before { display: none; }
+    footer { flex-direction: column; text-align: center; }
+    .metrics-bar { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">D. K. Sandilya</span>
+  <ul class="nav-links">
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#profiles">Profiles</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">NIW · EB-1A Research Portfolio · Denver, Colorado</div>
+    <h1>Debajit Kumar<br><em>Sandilya</em></h1>
+    <p class="hero-sub">
+      <strong>ML Systems Engineer & AI Researcher</strong> designing distributed multi-agent AI frameworks and secure data-driven workflows for critical U.S. infrastructure — advancing water conservation, energy resilience, and national cybersecurity.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">12</span>
+        <span class="stat-label">Peer-Review Citations</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">861</span>
+        <span class="stat-label">Research Reads</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Research Projects</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">160K+</span>
+        <span class="stat-label">Orgs Impacted</span>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="https://scholar.google.com/citations?user=rXZhO9gAAAAJ&hl=en" target="_blank" class="btn-primary">
+        ↗ Google Scholar
+      </a>
+      <a href="https://www.linkedin.com/in/debajit-kumar-sandilya/" target="_blank" class="btn-outline">
+        LinkedIn Profile
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NATIONAL IMPACT -->
+<section class="impact-section" id="impact">
+  <div class="section-label">National Importance</div>
+  <h2>Work That Matters<br>at a National Scale</h2>
+  <p class="section-intro">
+    My proposed endeavor is to leverage expertise in data engineering and artificial intelligence to design and develop cloud-based solutions that reinforce the reliability, security, and scalability of vital U.S. infrastructure — directly addressing strategic national priorities recognized by USCIS.
+  </p>
+
+  <div class="impact-grid reveal">
+    <div class="impact-card">
+      <div class="impact-icon">💧</div>
+      <h3>Water Conservation</h3>
+      <p>AI-driven precision irrigation systems reduce agricultural water waste. Agricultural irrigation accounts for nearly 70% of global freshwater withdrawals. My soil-moisture sensing research has direct applications in drought-prone U.S. regions, supporting food security and environmental sustainability.</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">⚡</div>
+      <h3>Energy Resilience</h3>
+      <p>Distributed multi-agent energy management frameworks enhance renewable integration and reduce carbon intensity in smart buildings and microgrids. My wireless BMS architecture demonstrates how decentralized AI can enhance reliability in critical physical infrastructure.</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🔐</div>
+      <h3>Cybersecurity & AI Governance</h3>
+      <p>As AI systems proliferate across enterprise and government infrastructure, secure MLOps frameworks are a national strategic necessity. My research on vulnerability detection, compliance guardrails, and explainable AI directly aligns with NIST's Cybersecurity Framework for AI systems.</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">📡</div>
+      <h3>Broadband & Connectivity</h3>
+      <p>At Charter Communications, I architected a multi-tenant AI portal under the Connect America Fund initiative serving over 160,000 organizations — directly advancing nationwide broadband access for underserved U.S. communities and critical connectivity infrastructure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH PROJECTS -->
+<section class="research-section" id="research">
+  <div class="section-label">Research Contributions</div>
+  <h2>Projects & Ongoing<br>Research Agenda</h2>
+  <p class="section-intro">
+    My research unites AI-driven intelligent systems, distributed multi-agent architectures, data-driven decision workflows, and cyber-physical integration — applied across smart building management, precision agriculture, and enterprise automation.
+  </p>
+
+  <div class="project-list reveal">
+
+    <div class="project-card">
+      <div>
+        <div class="project-num">Project 01 · IEEE Publication</div>
+        <h3>Wireless Battery Management System for Smart Buildings</h3>
+        <p>Designed a wireless battery-management system architecture leveraging distributed sensors, machine-learning models, and multi-agent coordination to monitor battery health, predict failures, and optimize energy use in smart buildings. Demonstrates how decentralized AI architectures can enhance reliability and resilience in physical infrastructure — with direct applications to renewable energy integration and carbon intensity reduction.</p>
+        <div class="project-tags">
+          <span class="tag">Multi-Agent Systems</span>
+          <span class="tag">Energy Optimization</span>
+          <span class="tag">Smart Buildings</span>
+          <span class="tag">Predictive ML</span>
+        </div>
+      </div>
+      <span class="project-badge">IEEE Published</span>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-num">Project 02 · Upcoming Publication</div>
+        <h3>AgriAI: Soil Moisture Sensing & Multi-Agent Irrigation Management</h3>
+        <p>Developed an AI-driven soil-moisture sensing system deploying distributed sensors and machine-learning models to predict soil conditions and recommend intelligent irrigation schedules. Extends research on multi-agent AI in precision agriculture. Analogous real-world deployments have saved tens of millions of cubic feet of water in individual river basins — demonstrating substantial national significance for U.S. water security and food production.</p>
+        <div class="project-tags">
+          <span class="tag">Precision Agriculture</span>
+          <span class="tag">IoT Sensing</span>
+          <span class="tag">Water Management</span>
+          <span class="tag">AI/ML</span>
+        </div>
+      </div>
+      <span class="project-badge">Under Review</span>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-num">Project 03 · Active Research</div>
+        <h3>Secure AI Adoption, MLOps & Cybersecurity Framework</h3>
+        <p>In collaboration with a university professor, leading research on process improvement, secure AI adoption, and cybersecurity frameworks. Explores how secure MLOps practices can streamline enterprise workflows while meeting compliance and governance requirements — incorporating vulnerability detection, compliance checks, bias mitigation, and explainability tools aligned with NIST Cyber AI Profile standards.</p>
+        <div class="project-tags">
+          <span class="tag">MLOps</span>
+          <span class="tag">Cybersecurity</span>
+          <span class="tag">AI Governance</span>
+          <span class="tag">Enterprise AI</span>
+        </div>
+      </div>
+      <span class="project-badge">In Progress</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- PUBLICATIONS & METRICS -->
+<section class="publications-section" id="publications">
+  <div class="section-label">Scholarly Impact</div>
+  <h2>Publications &<br>Citation Metrics</h2>
+  <p class="section-intro">
+    Peer-reviewed research spanning distributed AI architectures, automotive energy systems, and precision agriculture applications.
+  </p>
+
+  <div class="metrics-bar reveal">
+    <div class="metric-item">
+      <span class="metric-num">12</span>
+      <span class="metric-label">Total Citations</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-num">3</span>
+      <span class="metric-label">Publications</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-num">861</span>
+      <span class="metric-label">ResearchGate Reads</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-num">5+</span>
+      <span class="metric-label">Research Projects</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-num">16+</span>
+      <span class="metric-label">Peer-Review Citations</span>
+    </div>
+  </div>
+
+  <div class="pub-list reveal">
+    <div class="pub-card">
+      <span class="pub-year">2024</span>
+      <div>
+        <div class="pub-title">Wireless Battery Management System for Energy-Efficient Smart Building Infrastructure</div>
+        <div class="pub-journal">IEEE — Peer-Reviewed Conference/Journal</div>
+        <div class="pub-meta">
+          <span class="pub-badge ieee">IEEE Indexed</span>
+          <span class="pub-badge wos">WoS Eligible</span>
+        </div>
+      </div>
+      <div class="pub-citations">
+        <div class="citations-num">—</div>
+        <span class="citations-label">Pending</span>
+      </div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-year">2024<br><span style="color:var(--muted);font-size:0.65rem">Under<br>Review</span></div>
+      <div>
+        <div class="pub-title">Multi-Agent AI Framework for Precision Soil Moisture Sensing and Intelligent Irrigation Scheduling</div>
+        <div class="pub-journal">Target: Q2/Q3 Journal — WoS Indexed, No APC</div>
+        <div class="pub-meta">
+          <span class="pub-badge review">Under Review</span>
+          <span class="pub-badge wos">WoS Target</span>
+        </div>
+      </div>
+      <div class="pub-citations">
+        <div class="citations-num">—</div>
+        <span class="citations-label">Pending</span>
+      </div>
+    </div>
+    <div class="pub-card">
+      <span class="pub-year">Prior</span>
+      <div>
+        <div class="pub-title">Regenerative Braking System Design and Analysis for Electric Vehicles</div>
+        <div class="pub-journal">Peer-Reviewed Publication</div>
+        <div class="pub-meta">
+          <span class="pub-badge ieee">Peer Reviewed</span>
+        </div>
+      </div>
+      <div class="pub-citations">
+        <div class="citations-num">12</div>
+        <span class="citations-label">Citations</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+  <div class="section-label">Professional Experience</div>
+  <h2>Industry Track Record</h2>
+  <p class="section-intro">
+    Over a decade of applying AI and data engineering to solve real-world challenges in telecom, enterprise software, fintech, and agriculture — anchored by a Master's in Data Science.
+  </p>
+
+  <div class="exp-timeline reveal">
+    <div class="exp-item">
+      <div>
+        <div class="exp-period">2024 – Present</div>
+        <div class="exp-company">Atlassian</div>
+      </div>
+      <div class="exp-content">
+        <h3>Machine Learning Systems Engineer (MLOps)</h3>
+        <p>Building secure MLOps pipelines, implementing compliance and privacy guardrails, and developing AI-driven features for collaboration tools used by millions globally. Focus areas include model governance, fairness testing, and enterprise AI deployment.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-period">Prior</div>
+        <div class="exp-company">Charter Communications (Spectrum)</div>
+      </div>
+      <div class="exp-content">
+        <h3>Senior Data & AI Lead — Connect America Initiative</h3>
+        <p>Architected a multi-tenant AI portal under the Connect America Fund serving over 160,000 organizations across the U.S., enabling unified data management, intelligent provisioning, and self-service analytics. Led and mentored an 8-member data team. Recognized by senior leadership for innovation and impact in nationwide broadband expansion.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-period">5+ Years</div>
+        <div class="exp-company">Telecom Industry</div>
+      </div>
+      <div class="exp-content">
+        <h3>AI/ML for Network Reliability & Infrastructure</h3>
+        <p>Leveraged AI and machine learning to strengthen network reliability and expand internet access — supporting nationwide connectivity and advancing critical communications infrastructure for underserved communities.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-period">Industry</div>
+        <div class="exp-company">Citibank</div>
+      </div>
+      <div class="exp-content">
+        <h3>Data Systems — Trade Data for National & International Clients</h3>
+        <p>Applied data expertise to support the development and management of trade data systems serving national and international financial clients, contributing to financial infrastructure reliability and data integrity.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-period">Internship</div>
+        <div class="exp-company">IoT Company · California</div>
+      </div>
+      <div class="exp-content">
+        <h3>AI for Agricultural Soil Sensing</h3>
+        <p>Leveraged AI and data techniques to process soil sensor data — contributing to advancements in U.S. agriculture and directly supporting food security efforts. Foundational work for current AgriAI research.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-period">Academic</div>
+        <div class="exp-company">Univ. of Colorado Denver</div>
+      </div>
+      <div class="exp-content">
+        <h3>Teaching & Research Assistant — Data & AI</h3>
+        <p>Guided graduate and undergraduate students on Data Science and AI projects as TA/RA. Mentored corporate interns and teammates in adopting AI/ML technologies and data-driven decision-making.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-section">
+  <div class="section-label">Certifications</div>
+  <h2>Professional Credentials</h2>
+  <div class="certs-grid reveal" style="margin-top:3rem">
+    <div class="cert-card">
+      <div class="cert-issuer">Amazon Web Services</div>
+      <div class="cert-name">AWS Certified Machine Learning – Specialty</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Databricks</div>
+      <div class="cert-name">Generative AI Fundamentals Certification</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">University of Colorado Denver</div>
+      <div class="cert-name">Master of Science — Data Science</div>
+    </div>
+  </div>
+</section>
+
+<!-- NATIONAL SIGNIFICANCE -->
+<section class="national-section">
+  <div class="section-label">NIW Alignment</div>
+  <h2>Why This Work Is in the<br>National Interest</h2>
+  <p class="section-intro">
+    My research directly addresses strategic U.S. priorities recognized across federal agencies. The three pillars of my proposed endeavor — water, energy, and cybersecurity — are explicitly identified as critical national needs.
+  </p>
+
+  <div class="pillars-grid reveal">
+    <div class="pillar">
+      <span class="pillar-num">01</span>
+      <h3>Water Security</h3>
+      <p>AI-enabled precision irrigation addresses one of the most pressing U.S. environmental challenges. My multi-agent soil-sensing system reduces inefficient water use, supporting agricultural productivity in drought-prone regions critical to U.S. food supply.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">02</span>
+      <h3>Energy Sustainability</h3>
+      <p>Multi-agent BMS frameworks enhance renewable integration and reduce carbon intensity in smart buildings and microgrids — directly supporting U.S. clean energy transition goals and grid resilience initiatives.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">03</span>
+      <h3>Cybersecurity & AI Safety</h3>
+      <p>As AI proliferates in critical infrastructure, secure MLOps is a national imperative. My research on governance, explainability, and vulnerability detection aligns with NIST's Cybersecurity Framework for AI — protecting sensitive national systems.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">04</span>
+      <h3>Broadband Infrastructure</h3>
+      <p>My Connect America initiative work served 160,000+ organizations — demonstrating direct contribution to federal broadband expansion goals and nationwide digital equity, a recognized national strategic priority.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILES -->
+<section class="profiles-section" id="profiles">
+  <div class="section-label">Academic Profiles</div>
+  <h2>Research Presence &<br>Online Profiles</h2>
+  <p class="section-intro">Verified public profiles documenting scholarly contributions, citations, and professional network.</p>
+  <div class="profiles-row reveal">
+    <a href="https://scholar.google.com/citations?user=rXZhO9gAAAAJ&hl=en" target="_blank" class="profile-link">
+      <div class="profile-icon" style="background:rgba(66,133,244,0.1);">🎓</div>
+      <div class="profile-info">
+        <span class="profile-name">Google Scholar</span>
+        <span class="profile-stat">12 Citations · 3 Publications</span>
+      </div>
+    </a>
+    <a href="https://www.researchgate.net/profile/Debajit-Sandilya-2" target="_blank" class="profile-link">
+      <div class="profile-icon" style="background:rgba(0,204,136,0.1);">🔬</div>
+      <div class="profile-info">
+        <span class="profile-name">ResearchGate</span>
+        <span class="profile-stat">8 Citations · 861 Reads</span>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/debajit-kumar-sandilya/" target="_blank" class="profile-link">
+      <div class="profile-icon" style="background:rgba(0,119,181,0.1);">💼</div>
+      <div class="profile-info">
+        <span class="profile-name">LinkedIn</span>
+        <span class="profile-stat">Professional Profile</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Debajit Kumar Sandilya</div>
+  <div class="footer-note">ML Systems Engineer · AI Researcher · Denver, CO · NIW / EB-1A Portfolio</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Nav scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 50
+      ? 'rgba(8,12,20,0.97)'
+      : 'rgba(8,12,20,0.85)';
+  });
+</script>
+
+</body>
+</html>
